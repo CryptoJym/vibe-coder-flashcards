@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Node
+apps/web/node_modules/
+apps/web/.next/
+
+# Test caches
+.pytest_cache/
