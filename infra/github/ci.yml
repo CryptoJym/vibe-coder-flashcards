@@ -6,7 +6,8 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  backend:
+    name: Backend Tests
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -22,11 +23,45 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install deps
+      - name: Install backend deps
         run: |
           python -m pip install --upgrade pip
-          pip install fastapi uvicorn pytest httpx
-      - name: Run tests
+          pip install -r requirements.txt
+      - name: Run pytest
         env:
           OPENAI_API_KEY: "dummy-key"
         run: pytest -q
+
+  frontend:
+    name: Frontend Build & Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install web deps
+        run: npm ci
+      - name: Build web
+        run: npm run build --if-present
+      - name: Jest tests
+        run: npm run test --if-present
+
+  deploy-netlify:
+    name: Deploy to Netlify
+    needs: [backend, frontend]
+    if: github.ref == 'refs/heads/main' && secrets.NETLIFY_AUTH_TOKEN != '' && secrets.NETLIFY_SITE_ID != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+      - name: Deploy site
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify deploy --dir=apps/web/.next --prod --json
