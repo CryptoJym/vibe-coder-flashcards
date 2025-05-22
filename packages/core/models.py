@@ -6,6 +6,9 @@ All models inherit from SQLModel for seamless ORM + pydantic validation.
 from __future__ import annotations
 
 import datetime as _dt
+
+from sqlmodel import SQLModel, Field, Relationship
+
 from typing import List
 from sqlmodel import SQLModel, Field
 
@@ -51,6 +54,7 @@ class Flashcard(SQLModel, table=True):
     interval: int = 1  # days until next review
     repetitions: int = 0
     next_review: _dt.date = Field(default_factory=_dt.date.today)
+
 
 
 
