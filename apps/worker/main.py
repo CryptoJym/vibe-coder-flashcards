@@ -4,11 +4,12 @@ Provides a simple health-check route for now.
 """
 from fastapi import FastAPI
 from openai import AsyncOpenAI
+import os
 from .schemas import TextIn, SummaryOut, Flashcard, FlashcardsOut
 
 app = FastAPI(title="Vibe Coder Flashcards Worker")
 
-client = AsyncOpenAI()  # expects OPENAI_API_KEY env var
+client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY", "test"))
 
 
 @app.get("/")
