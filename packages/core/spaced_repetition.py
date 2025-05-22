@@ -82,4 +82,5 @@ def due_cards(cards: Iterable[Card], today: date) -> List[Card]:
     """Return cards due for review today."""
     return [c for c in cards if c.next_review <= today]
 
+
 __all__: list[str] = ["sm2", "Card", "schedule_cards", "due_cards"]
