@@ -1,7 +1,7 @@
 # Project Requirements Document (PRD) – Vibe Coder Flashcards
 
 ## 1. Overview
-Build a web app that tracks new AI tools, updates, techniques, protocols, and systems from select Twitter and YouTube feeds. It generates flashcards from these updates using an LLM and gamifies learning with daily memorization sprints and weekly quizzes.
+Build a web app that tracks new AI tools, updates, techniques, protocols, and systems from select Twitter (X) accounts. It generates flashcards from these updates using an LLM and gamifies learning with daily memorization sprints and weekly quizzes.
 
 ## 2. Target Audience
 - AI-curious developers ("vibe coders")
@@ -9,7 +9,7 @@ Build a web app that tracks new AI tools, updates, techniques, protocols, and sy
 - Hackathon competitors and indie AI tool builders
 
 ## 3. Core Features
-1. Feed Listener: Follow selected X (Twitter) accounts and YouTube channels
+1. Feed Listener: Follow selected X (Twitter) accounts
 2. Content Filter & LLM Summarizer: Summarize new content into concise, high-signal flashcards
 3. Daily Deck: Deliver 15–30 flashcards per day to the user
 4. Study Mode: Gamified study with timers, streak tracking, spaced repetition (SM-2)
@@ -24,7 +24,7 @@ Build a web app that tracks new AI tools, updates, techniques, protocols, and sy
 - As a user, I want to compete on a weekly quiz and see my rank
 
 ## 5. Functional Requirements
-- Feed ingestion (Twitter, YouTube)
+- Feed ingestion (Twitter)
 - Summarization via LLM
 - Flashcard generation, scheduling, and scoring
 - User authentication, storage, and profile tracking
