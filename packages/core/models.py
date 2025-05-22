@@ -9,6 +9,9 @@ import datetime as _dt
 
 from sqlmodel import SQLModel, Field, Relationship
 
+from typing import List
+from sqlmodel import SQLModel, Field
+
 
 class User(SQLModel, table=True):
     """Application user.
@@ -51,6 +54,8 @@ class Flashcard(SQLModel, table=True):
     interval: int = 1  # days until next review
     repetitions: int = 0
     next_review: _dt.date = Field(default_factory=_dt.date.today)
+
+
 
 
 __all__: list[str] = [
