@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import datetime as _dt
 from typing import List
-from sqlmodel import SQLModel, Field, Relationship
+from sqlmodel import SQLModel, Field
 
 
 class User(SQLModel, table=True):
@@ -19,7 +19,6 @@ class User(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     email: str = Field(index=True, unique=True, nullable=False)
     created_at: _dt.datetime = Field(default_factory=_dt.datetime.utcnow)
-    flashcards: List["Flashcard"] = Relationship(back_populates="owner")
 
 
 class Feed(SQLModel, table=True):
@@ -53,7 +52,6 @@ class Flashcard(SQLModel, table=True):
     repetitions: int = 0
     next_review: _dt.date = Field(default_factory=_dt.date.today)
 
-    owner: User = Relationship(back_populates="flashcards")
 
 
 __all__: list[str] = [
