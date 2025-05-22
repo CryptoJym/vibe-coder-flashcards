@@ -33,4 +33,4 @@ npm run dev
 2. **Delete / consolidate** – minimal microservices, mono-repo.  
 3. **Simplify & optimise** – use managed services, serverless cron.  
 4. **Accelerate cycle time** – CI, preview deploys, Codespaces.  
-5. **Automate** – GitHub Actions for tests, ingestion, deploy.
+5. **Automate** – GitHub Actions for tests, ingestion, deploy, and auto merging of passing pull requests.
